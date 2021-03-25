@@ -10,4 +10,4 @@
 
   - name: running kubeadm join command
     shell: "/root/join_command1.sh"
-    #  when: join_command_copied.changed 
+    when: join_command_copied.changed 
