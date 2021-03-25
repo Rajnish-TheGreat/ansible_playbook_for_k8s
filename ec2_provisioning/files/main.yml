@@ -1,0 +1,34 @@
+- name: Provisioning EC2
+  ec2:         
+          key_name: "hadoop"
+          instance_type: t2.micro
+          image: "ami-0a9d27a9f4f5c0efc"
+          count: 3
+          instance_tags:
+            Name: webserver
+          vpc_subnet_id: "subnet-ca076c86"
+          assign_public_ip: yes
+          region: ap-south-1
+          state: present
+          group_id: "sg-da6111b8"
+          region: ap-south-1
+          aws_access_key: "{{access_key}}"
+          aws_secret_key: "{{secret_key}}"
+
+
+- name: Provisioning EC2 LB
+  ec2:
+          key_name: "hadoop"
+          instance_type: t2.micro
+          image: "ami-0a9d27a9f4f5c0efc"
+          count: 1
+          instance_tags:
+            Name: loadBalancer
+          vpc_subnet_id: "subnet-ca076c86"
+          assign_public_ip: yes
+          region: ap-south-1
+          state: present
+          group_id: "sg-da6111b8"
+          region: ap-south-1
+          aws_access_key: "{{access_key}}"
+          aws_secret_key: "{{secret_key}}"

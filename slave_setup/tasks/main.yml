@@ -1,0 +1,13 @@
+---
+# tasks file for slave_setup
+
+  - name: copy the join command file
+    copy:
+      src: "/task19/files/join_command.sh/{{ groups['tag_Type_master'][0] }}/join_command.sh"
+      dest: /root/join_command1.sh
+      mode: "u+rwx"
+    register: join_command_copied
+
+  - name: running kubeadm join command
+    shell: "/root/join_command1.sh"
+    #  when: join_command_copied.changed 

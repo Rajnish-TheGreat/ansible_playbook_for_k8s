@@ -1,0 +1,14 @@
+- hosts: tag_Name_k8s
+  roles:
+    - role: common_setup
+
+
+- hosts: tag_Type_master
+  roles:
+    - role: master_setup
+
+
+- hosts: tag_Type_slave
+  roles:
+    - role: slave_setup
+

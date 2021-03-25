@@ -1,0 +1,37 @@
+---
+# tasks file for ec2_provisioning
+- name: Provisioning EC2 Master
+  ec2:         
+          key_name: "{{key_name}}"
+          instance_type: "{{ instance_type }}"
+          image: "{{ image_id }}"
+          count: 1
+          instance_tags:
+            Name: k8s
+            Type: master
+          vpc_subnet_id: "{{ vpc_subnet_id }}"
+          assign_public_ip: yes
+          region: "{{ region }}"
+          state: present
+          group_id: "{{ sg_group }}"
+          aws_access_key: "{{access_key}}"
+          aws_secret_key: "{{secret_key}}"
+
+
+- name: Provisioning EC2 Slave
+  ec2:
+          key_name: "{{key_name}}"
+          instance_type: "{{ instance_type }}"
+          image: "{{ image_id }}"
+          count: 2
+          instance_tags:
+            Name: k8s
+            Type: slave
+          vpc_subnet_id: "{{ vpc_subnet_id }}"
+          assign_public_ip: yes
+          region: "{{ region }}"
+          state: present
+          group_id: "{{ sg_group }}"
+          aws_access_key: "{{access_key}}"
+          aws_secret_key: "{{secret_key}}"
+
